@@ -1,0 +1,15 @@
+package jdbc;
+
+import java.util.UUID;
+
+public class Jdbc {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		 
+		String uuid = UUID.randomUUID().toString();
+		System.out.print(uuid);
+	}
+
+}

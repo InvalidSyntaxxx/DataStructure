@@ -1,0 +1,45 @@
+package utils;
+
+import java.io.FileInputStream;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.sql.rowset.serial.SerialBlob;
+
+import sun.misc.IOUtils;
+
+public class DBtils {
+
+	public static void main(String[] args) {
+	
+		String url="jdbc:mysql://localhost:3306/test";
+		String user="root";
+		String password="WANGchen0809.";
+		try {
+			Connection connection=DriverManager.getConnection(url, user, password);
+            System.out.println("Connecting MySql...");	
+            String sql="insert into tab_bin values(?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setString(2, "xxx.mp3");
+            /**
+             * 我们需要得到一个Blob
+             * 先把文件变成 byte[]，这里我们使用一个工具类的方法，这个工具类，大家可以在资源下载里下载。
+             * 再使用byte[]创建Blob
+             */
+            //把文件变成byte[]
+            byte[] bytes = IOUtils.toByteArray(new FileInputStream("F://xxx.mp3"));
+            Blob blob = new SerialBlob(bytes);
+            preparedStatement.setBlob(3, blob);
+            preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}
