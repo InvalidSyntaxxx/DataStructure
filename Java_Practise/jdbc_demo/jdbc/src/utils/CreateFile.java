@@ -81,7 +81,7 @@ public class CreateFile {
 	        // 自己创建输出流对象
 	        // 把输入流数据写入到输出流中
 	        InputStream inputStream = blob.getBinaryStream();
-	        OutputStream out = new FileOutputStream("C://Users/86199/Desktop/蛋.jpg");
+	        OutputStream out = new FileOutputStream("C://Users/86199/Desktop/傻瓜.jpg");
 	        IOUtils.copy(inputStream,out);
 	        
 	    }
