@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//WebContent/css/shop.css=UTF-8
+encoding//WebContent/index.jsp=UTF-8
+encoding//src/main/java/controller/User/AddUserServlet.java=UTF-8
+encoding//src/main/java/controller/User/DeleteUserServlet.java=UTF-8
+encoding//src/main/java/controller/User/GetUserServlet.java=UTF-8
+encoding//src/main/java/controller/User/UpdateUserServlet.java=UTF-8
+encoding//src/main/java/controller/User/UserListServlet.java=UTF-8
+encoding//src/main/java/dao/UserInfoDao.java=UTF-8
