@@ -37,7 +37,7 @@ public class CreateFile {
 
 	    String url = "jdbc:mysql://localhost:3306/test";
 	    String user="root";
-		String password="WANGchen0809.";
+		String password="";
 
 	    Class.forName("com.mysql.jdbc.Driver");
 	    Connection connection = DriverManager.getConnection(url, user, password);
@@ -48,11 +48,11 @@ public class CreateFile {
 	    preparedStatement.setInt(1, 1);
 	    preparedStatement.setString(2, "test.png");
 	    /**
-	     * ÎÒÃÇĞèÒªµÃµ½Ò»¸öBlob
-	     * ÏÈ°ÑÎÄ¼ş±ä³É byte[]£¬ÕâÀïÎÒÃÇÊ¹ÓÃÒ»¸ö¹¤¾ßÀàµÄ·½·¨£¬Õâ¸ö¹¤¾ßÀà£¬´ó¼Ò¿ÉÒÔÔÚ×ÊÔ´ÏÂÔØÀïÏÂÔØ¡£
-	     * ÔÙÊ¹ÓÃbyte[]´´½¨Blob
+	     * æˆ‘ä»¬éœ€è¦å¾—åˆ°ä¸€ä¸ªBlob
+	     * å…ˆæŠŠæ–‡ä»¶å˜æˆ byte[]ï¼Œè¿™é‡Œæˆ‘ä»¬ä½¿ç”¨ä¸€ä¸ªå·¥å…·ç±»çš„æ–¹æ³•ï¼Œè¿™ä¸ªå·¥å…·ç±»ï¼Œå¤§å®¶å¯ä»¥åœ¨èµ„æºä¸‹è½½é‡Œä¸‹è½½ã€‚
+	     * å†ä½¿ç”¨byte[]åˆ›å»ºBlob
 	     */
-	    //°ÑÎÄ¼ş±ä³Ébyte[]
+	    //æŠŠæ–‡ä»¶å˜æˆbyte[]
 	    byte[] bytes = IOUtils.toByteArray(new FileInputStream("C://Users/86199/vue-hello/src/assets/logo.png"));
 	    Blob blob = new SerialBlob(bytes);
 	    preparedStatement.setBlob(3, blob);
@@ -60,28 +60,28 @@ public class CreateFile {
 	}
 	
 	/**
-	 * ´ÓÊı¾İ¿âÖĞ¶ÁÈ¡ MP3¡£
+	 * ä»æ•°æ®åº“ä¸­è¯»å– MP3ã€‚
 	 */
 	public static void get() throws ClassNotFoundException, SQLException, IOException {
 	    String url = "jdbc:mysql://localhost:3306/test";
 	    String user="root";
-	  	String password="WANGchen0809.";
+	  	String password="";
         
 	    Class.forName("com.mysql.jdbc.Driver");
 	    Connection connection = DriverManager.getConnection(url, user, password);
 	    String sql = "select * from tab_bin";
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 	    ResultSet resultSet = preparedStatement.executeQuery(sql);
-	    // »ñÈ¡resultSetÖĞÁĞÎªdataµÄÊı¾İ
+	    // è·å–resultSetä¸­åˆ—ä¸ºdataçš„æ•°æ®
 	    if (resultSet.next()) {
 	    	
 	        Blob blob = resultSet.getBlob("data");
-	        // °Ñblob±ä³ÉÓ²ÅÌÉÏµÄÎÄ¼ş
-	        // Í¨¹ıblobµÃµ½ÊäÈëÁ÷¶ÔÏó
-	        // ×Ô¼º´´½¨Êä³öÁ÷¶ÔÏó
-	        // °ÑÊäÈëÁ÷Êı¾İĞ´Èëµ½Êä³öÁ÷ÖĞ
+	        // æŠŠblobå˜æˆç¡¬ç›˜ä¸Šçš„æ–‡ä»¶
+	        // é€šè¿‡blobå¾—åˆ°è¾“å…¥æµå¯¹è±¡
+	        // è‡ªå·±åˆ›å»ºè¾“å‡ºæµå¯¹è±¡
+	        // æŠŠè¾“å…¥æµæ•°æ®å†™å…¥åˆ°è¾“å‡ºæµä¸­
 	        InputStream inputStream = blob.getBinaryStream();
-	        OutputStream out = new FileOutputStream("C://Users/86199/Desktop/Éµ¹Ï.jpg");
+	        OutputStream out = new FileOutputStream("C://Users/86199/Desktop/å‚»ç“œ.jpg");
 	        IOUtils.copy(inputStream,out);
 	        
 	    }
